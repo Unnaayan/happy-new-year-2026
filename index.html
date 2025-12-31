@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    background: #000;
+    color: white;
+    font-family: "Comic Sans MS", cursive;
+    overflow: hidden;
+    text-align: center;
+}
+h1 {
+    margin-top: 20px;
+    animation: fadeIn 3s;
+}
+p {
+    animation: fadeIn 4s;
+}
+canvas {
+    margin-top: 10px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Happy New Year My Special One ❤️</h1>
+<p>May this year bring lots of happiness to you ✨</p>
+
+<canvas id="canvas"></canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight * 0.7;
+
+const img = new Image();
+img.src = "sketch.jpg";   // 👈 realistic sketch image
+
+let y = 0;
+
+img.onload = () => {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drawSketch();
+};
+
+function drawSketch() {
+    if (y < img.height) {
+        ctx.drawImage(
+            img,
+            0, y, img.width, 5,
+            canvas.width/2 - 150, y/2,
+            300, 5
+        );
+        y += 5;
+        requestAnimationFrame(drawSketch);
+    }
+}
+</script>
+
+</body>
+</html>
